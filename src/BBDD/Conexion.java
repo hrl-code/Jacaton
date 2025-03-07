@@ -46,29 +46,35 @@ public class Conexion {
         }
     }
 
-    public static boolean acceder(String user, String pass) {
+    public static int acceder(String user, String pass) {
         try {
-            // Modifico la consulta para usar "contraseña" en lugar de "pass"
-            String consulta = "SELECT usuario, contraseña FROM vendedores WHERE usuario=? AND contraseña=?";
+            // Primero verificamos si el usuario existe
+            String consultaUsuario = "SELECT usuario, contraseña FROM vendedores WHERE usuario=?";
 
-            PreparedStatement pst;
-            ResultSet rs;
+            PreparedStatement pstUsuario;
+            ResultSet rsUsuario;
 
-            pst = conn.prepareStatement(consulta);
+            pstUsuario = conn.prepareStatement(consultaUsuario);
+            pstUsuario.setString(1, user);
+            rsUsuario = pstUsuario.executeQuery();
 
-            pst.setString(1, user);
-            pst.setString(2, pass);
+            if (rsUsuario.next()) {
+                // El usuario existe, ahora verificamos la contraseña
+                String passGuardada = rsUsuario.getString("contraseña");
 
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                return true;
+                if (pass.equals(passGuardada)) {
+                    return 1; // Usuario y contraseña correctos
+                } else {
+                    return 0; // Usuario correcto, contraseña incorrecta
+                }
+            } else {
+                return -1; // El usuario no existe
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return -2; // Error en la base de datos
         }
-        return false;
     }
 
     // En la clase BBDD.Conexion
@@ -279,7 +285,7 @@ public static void informeTres(DefaultTableModel modelo, int seccion, JLabel jLa
             ResultSet rs = conn.createStatement().executeQuery(consulta);
             while (rs.next()) {
                 datos[0] = rs.getString("CIUDAD");
-                datos[1] = rs.getDouble("LIBRO");
+                datos[1] = rs.getInt("LIBRO");
 
                 modelo.addRow(datos);
             }

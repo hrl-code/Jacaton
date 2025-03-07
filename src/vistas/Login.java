@@ -163,20 +163,33 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 
-    public void entrar () {
+    public void entrar() {
         String minombre = campoUsuario.getText();
-        String mipass = new String (campoPass.getPassword());
+        String mipass = new String(campoPass.getPassword());
 
         BBDD.Conexion.conectar();
-        if(BBDD.Conexion.acceder(minombre, mipass)) {
-            Principal p = new Principal();
-            p.setVisible(true);
-            this.dispose();
-        }else {
-            JOptionPane.showMessageDialog(this, "KeTu TEcre");
-            campoPass.setText("");
-            campoUsuario.setText("");
+        int resultado = BBDD.Conexion.acceder(minombre, mipass);
 
+        switch (resultado) {
+            case 1: // Usuario y contraseña correctos
+                Principal p = new Principal();
+                p.setVisible(true);
+                this.dispose();
+                break;
+            case 0: // Usuario correcto, contraseña incorrecta
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                campoPass.setText("");
+                break;
+            case -1: // Usuario no existe
+                JOptionPane.showMessageDialog(this, "El usuario no existe");
+                campoUsuario.setText("");
+                campoPass.setText("");
+                break;
+            default: // Error en la base de datos
+                JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos");
+                campoUsuario.setText("");
+                campoPass.setText("");
+                break;
         }
 
         BBDD.Conexion.cerrarConexion();

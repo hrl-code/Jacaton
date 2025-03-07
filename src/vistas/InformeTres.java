@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -228,13 +229,17 @@ public class InformeTres extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     public void actualizarTabla() {
-        DefaultTableModel modelo=(DefaultTableModel) Tabla.getModel();
-        modelo.setRowCount(0);
+        if (jComboBox1.getSelectedIndex()==0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una sección", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+            modelo.setRowCount(0);
 
-        int seccion = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+            int seccion = Integer.parseInt(jComboBox1.getSelectedItem().toString());
 
-        BBDD.Conexion.conectar();
-        BBDD.Conexion.informeTres(modelo, seccion, jLabel4);
-        BBDD.Conexion.cerrarConexion();
+            BBDD.Conexion.conectar();
+            BBDD.Conexion.informeTres(modelo, seccion, jLabel4);
+            BBDD.Conexion.cerrarConexion();
+        }
     }
 }
