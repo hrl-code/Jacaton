@@ -102,7 +102,7 @@ public class InformeTres extends javax.swing.JDialog {
                 {null, null}
             },
             new String [] {
-                "UBICACIÓN", "VOLúMENES"
+                "UBICACIÓN", "LIBROS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -231,6 +231,10 @@ public class InformeTres extends javax.swing.JDialog {
     public void actualizarTabla() {
         if (jComboBox1.getSelectedIndex()==0) {
             JOptionPane.showMessageDialog(this, "Seleccione una sección", "Error", JOptionPane.ERROR_MESSAGE);
+            //Limpar tabla
+            DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+            modelo.setRowCount(0);
+            jLabel4.setText("0");
         } else {
             DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
             modelo.setRowCount(0);

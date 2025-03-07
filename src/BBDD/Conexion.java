@@ -308,7 +308,7 @@ public static void informeTres(DefaultTableModel modelo, int seccion, JLabel jLa
             ResultSet rs = conn.createStatement().executeQuery(consulta);
             while (rs.next()) {
                 datos[0] = rs.getString("COMUNIDAD AUTÓNOMA");
-                datos[1] = rs.getDouble("LIBRO");
+                datos[1] = rs.getInt("LIBRO");
 
                 modelo.addRow(datos);
             }
