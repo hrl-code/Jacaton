@@ -297,7 +297,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Numero de libros en cat&#xe1;logos"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de libros en cat&#xe1;logos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -308,7 +308,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Numero total de vol&#xfa;menes"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero total de vol&#xfa;menes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

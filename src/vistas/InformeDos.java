@@ -125,7 +125,7 @@ public class InformeDos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "PLATAFORMA", "FACTURACIÓN"
+                "PLATAFORMA", "FACTURACION"
             }
         ) {
             boolean[] canEdit = new boolean [] {

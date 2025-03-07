@@ -52,7 +52,7 @@ public class InformeCinco extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Relación de las cinco ciudades y número de libros editados en ellas(top 5)");
+        jLabel1.setText("Relación de las cinco ciudades y número de libros editados en ellas (top 5)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
